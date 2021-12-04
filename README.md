@@ -16,13 +16,13 @@
                 
                     Instruções para startar o BackEnd do projeto
 
-*   Primeiramente dentro do diretório raiz deve ser criada uma virtualenv
+*   Primeiramente dentro do diretório raiz do projeto deve ser criada uma virtualenv
     e em seguida ativada
     
-*   Após ativar a virtualenv execute o comando  " pip install -r requirements.txt  "  e aguarde a instalação 
+*   Após ativar a virtualenv execute o comando  `pip install -r requirements.txt`  e aguarde a instalação 
     de todos os pacotes
     
-*   Em seguida execute o comando  " python ediaristas/manage.py runserver  "
+*   Em seguida execute o comando  `python ediaristas/manage.py runserver`
 
 *   Em seu navegador acesse  http://127.0.0.1:8000/web/listar_diaristas
 
