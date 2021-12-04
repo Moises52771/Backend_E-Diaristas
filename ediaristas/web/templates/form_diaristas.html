@@ -1,0 +1,70 @@
+{% extends 'base.html' %} {% load crispy_forms_tags %} {% block conteudo %}
+
+<form method="post" enctype="multipart/form-data">
+  <br />
+  {% csrf_token %} {{form_diarista|crispy}}
+  <!--from_darista de views.py-->
+  <hr />
+  <button type="submit" class="btn btn-primary">Cadastrar</button>
+  <br /><br />
+  <h1 />
+</form>
+
+<script type="text/javascript">
+  var inputCep = document.getElementById("id_cep");
+
+  inputCep.addEventListener("input", () => {
+    var cep = inputCep.value;
+    if (cep.length == 9) {
+      $.get("https://viacep.com.br/ws/" + cep + "/json/").then((infos) => {
+        if (infos.erro == true) {
+          erro = "O CEP informado não é valido ";
+          var logradouro = document.getElementById("id_logradouro"),
+            bairro = document.getElementById("id_bairro"),
+            estado = document.getElementById("id_estado"),
+            cidade = document.getElementById("id_cidade");
+
+          logradouro.value = erro;
+          bairro.value = erro;
+          estado.value = erro;
+          cidade.value = erro;
+
+          logradouro.style.color = "red";
+          bairro.style.color = "red";
+          estado.style.color = "red";
+          cidade.style.color = "red";
+        } else {
+          var logradouro = document.getElementById("id_logradouro"),
+            bairro = document.getElementById("id_bairro"),
+            estado = document.getElementById("id_estado"),
+            cidade = document.getElementById("id_cidade");
+          logradouro.value = infos.logradouro;
+          bairro.value = infos.bairro;
+          estado.value = infos.uf;
+          cidade.value = infos.localidade;
+
+          logradouro.style.color = "black";
+          bairro.style.color = "black";
+          estado.style.color = "black";
+          cidade.style.color = "black";
+        }
+      });
+    } else {
+      var logradouro = document.getElementById("id_logradouro"),
+        bairro = document.getElementById("id_bairro"),
+        estado = document.getElementById("id_estado"),
+        cidade = document.getElementById("id_cidade");
+
+      logradouro.value = "";
+      bairro.value = "";
+      estado.value = "";
+      cidade.value = "";
+
+      logradouro.style.color = "black";
+      bairro.style.color = "black";
+      estado.style.color = "black";
+      cidade.style.color = "black";
+    }
+  });
+</script>
+{% endblock conteudo %}
